@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Эксперимент</title>
+  <!-- jsPsych (CDN) -->
+  <script src="https://unpkg.com/jspsych@7.3.3/dist/jspsych.js"></script>
+  <link href="https://unpkg.com/jspsych@7.3.3/dist/jspsych.css" rel="stylesheet" />
+
+  <!-- Плагины, которые понадобятся -->
+  <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.2"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.2"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-survey-text@1.1.2"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-survey-likert@1.1.2"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-audio-keyboard-response@1.1.2"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-audio-button-response@1.1.2"></script>
+
+  <style>
+    body { background-color: #f5f5f5; }
+    .jspsych-content { max-width: 800px; }
+  </style>
+</head>
+<body>
+  <div id="jspsych-target"></div>
+  <script src="experiment.js"></script>
+</body>
+</html>
