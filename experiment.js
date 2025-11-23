@@ -4,8 +4,9 @@ const jsPsych = initJsPsych({
   on_finish: function() {
     // Сохранить данные в CSV и скачать
     const csv = jsPsych.data.get().csv();
-    const participant = jsPsych.data.get().values()[0]?.participant || 'NOID';
-    const group = jsPsych.data.get().values()[0]?.group || 'NOGROUP';
+    const first = jsPsych.data.get().values()[0] || {};
+    const participant = first.participant || 'NOID';
+    const group = first.group || 'NOGROUP';
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
     const filename = `data_${participant}_g${group}_${timestamp}.csv`;
 
@@ -26,7 +27,7 @@ let timeline = [];
 const participant_id_trial = {
   type: jsPsychSurveyText,
   questions: [
-    {prompt: 'Введите ID участника:', name: 'participant_id', required: true}
+    { prompt: 'Введите ID участника:', name: 'participant_id', required: true }
   ],
   button_label: 'Продолжить',
   on_finish: function(data){
@@ -42,10 +43,8 @@ const assign_group_trial = {
   stimulus: '<p>Назначение группы...</p><p>Нажмите кнопку, чтобы продолжить.</p>',
   choices: ['Продолжить'],
   on_start: function(trial){
-    // случайная группа 1, 2 или 3
     const group = Math.floor(Math.random() * 3) + 1;
     jsPsych.data.addProperties({ group: group });
-    // ЭТО видит участник: временно покажем группу, чтобы ты могла проверить.
     trial.stimulus = `<p>Вам назначена группа: ${group} (позже это спрячем).</p><p>Нажмите кнопку, чтобы продолжить.</p>`;
   }
 };
